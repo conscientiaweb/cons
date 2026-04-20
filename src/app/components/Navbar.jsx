@@ -120,7 +120,7 @@ const Nav = () => {
             className="fixed inset-0 w-full h-[100dvh] bg-[#050505] z-[90] flex flex-col md:flex-row pointer-events-auto overflow-hidden">
             
             {/* Background Animation */}
-            <div className="absolute inset-0 w-full h-full z-0 opacity-60 pointer-events-auto rotate-180 scale-150 overflow-hidden">
+            <div className="absolute inset-0 w-full h-full z-0 pointer-events-auto rotate-180 scale-150 overflow-hidden">
               <Threads
                 color={[0.0, 128, 128]}
                 amplitude={3}
