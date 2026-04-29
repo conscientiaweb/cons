@@ -178,7 +178,7 @@ export default function WorkshopRegistration() {
         contact: formData.phone,
       },
       theme: {
-        color: "#eab308", // Matches your Yellow-500 theme
+        color: "#3b82f6", // Matches your [#3b82f6] theme
       },
       modal: {
         ondismiss: function() {
@@ -212,14 +212,14 @@ export default function WorkshopRegistration() {
         src="https://checkout.razorpay.com/v1/checkout.js" 
       />
 
-      <div className="min-h-screen bg-[#0a0a0a] text-white font-sans selection:bg-yellow-500/30 flex flex-col items-center">
+      <div className="min-h-screen bg-[#0a0a0a] text-white font-sans selection:bg-[#3b82f6]/30 flex flex-col items-center">
         {/* --- NAVIGATION --- */}
         <nav className="pb-5 border-b border-white/5 flex w-full items-center justify-center bg-black/50 backdrop-blur-md sticky top-0 z-50">
           <div className="flex gap-3 pt-5">
             {[1, 2, 3].map(i => (
               <motion.div 
                 key={i} 
-                animate={{ width: step === i ? 40 : 12, backgroundColor: step >= i ? '#eab308' : '#262626' }}
+                animate={{ width: step === i ? 40 : 12, backgroundColor: step >= i ? '#3b82f6' : '#262626' }}
                 className="h-1.5 rounded-full" 
               />
             ))}
@@ -229,9 +229,9 @@ export default function WorkshopRegistration() {
         <main className="max-w-5xl w-full mx-auto p-6 pt-12 pb-40">
           {/* --- INFO BANNER --- */}
           {step < 4 && (
-            <div className="mb-8 flex items-center gap-3 p-4 bg-yellow-500/10 border border-yellow-500/20 rounded-2xl">
-              <Info className="text-yellow-500 shrink-0" size={20} />
-              <p className="text-[11px] font-bold uppercase tracking-wider text-yellow-500/80 leading-relaxed">
+            <div className="mb-8 flex items-center gap-3 p-4 bg-[#3b82f6]/10 border border-[#3b82f6]/20 rounded-2xl">
+              <Info className="text-[#3b82f6] shrink-0" size={20} />
+              <p className="text-[11px] font-bold uppercase tracking-wider text-[#3b82f6]/80 leading-relaxed">
                 Note: Confirmation and meeting links will be sent exclusively to your registered email address.
               </p>
             </div>
@@ -242,20 +242,20 @@ export default function WorkshopRegistration() {
             {step === 1 && (
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="max-w-md mx-auto space-y-8 mt-12">
                 <div className="text-center space-y-2">
-                  <h1 className="text-4xl font-black uppercase tracking-tighter italic">Workshop Registration<span className="text-yellow-500">.</span></h1>
+                  <h1 className="text-4xl font-black uppercase tracking-tighter italic">Workshop Registration<span className="text-[#3b82f6]">.</span></h1>
                   <p className="text-neutral-500 text-sm font-bold tracking-widest uppercase">Enter email to proceed</p>
                 </div>
                 <div className="space-y-4">
                   <input 
                     type="email" placeholder="student@university.edu" 
                     value={formData.email}
-                    className="w-full bg-neutral-900 border border-neutral-800 p-5 rounded-2xl focus:border-yellow-500 outline-none transition-all text-white"
+                    className="w-full bg-neutral-900 border border-neutral-800 p-5 rounded-2xl focus:border-[#3b82f6] outline-none transition-all text-white"
                     onChange={(e) => setFormData({...formData, email: e.target.value})}
                   />
                   <button 
                     onClick={handleEmailCheck}
                     disabled={!isEmailValid || isChecking}
-                    className="w-full bg-yellow-500 text-black p-5 rounded-2xl font-black uppercase tracking-widest text-sm hover:bg-yellow-400 transition-all flex items-center justify-center gap-2 group disabled:opacity-50"
+                    className="w-full bg-[#3b82f6] text-black p-5 rounded-2xl font-black uppercase tracking-widest text-sm hover:bg-yellow-400 transition-all flex items-center justify-center gap-2 group disabled:opacity-50"
                   >
                     {isChecking ? <Loader2 className="animate-spin" size={18} /> : "Verify Credentials"}
                     {!isChecking && <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />}
@@ -268,7 +268,7 @@ export default function WorkshopRegistration() {
             {step === 2 && (
               <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-10">
                 <div className="text-center">
-                  <h1 className="text-4xl font-black uppercase italic tracking-tighter">Details Required<span className="text-yellow-500 text-6xl leading-none">.</span></h1>
+                  <h1 className="text-4xl font-black uppercase italic tracking-tighter">Details Required<span className="text-[#3b82f6] text-6xl leading-none">.</span></h1>
                   <p className="text-neutral-500 text-sm font-black uppercase tracking-[0.2em] mt-2">All fields are mandatory for certification</p>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -281,11 +281,11 @@ export default function WorkshopRegistration() {
                     };
                     return (
                       <div key={field} className="space-y-2">
-                        <label className="text-sm font-black uppercase tracking-[0.3em] text-yellow-500 ml-2">{displayLabels[field] || field} *</label>
+                        <label className="text-sm font-black uppercase tracking-[0.3em] text-[#3b82f6] ml-2">{displayLabels[field] || field} *</label>
                         <input 
                           placeholder={`Enter ${displayLabels[field] || field}`}
                           value={formData[field]}
-                          className="w-full bg-neutral-900 border border-neutral-800 p-4 rounded-xl focus:border-yellow-500 outline-none"
+                          className="w-full bg-neutral-900 border border-neutral-800 p-4 rounded-xl focus:border-[#3b82f6] outline-none"
                           onChange={(e) => setFormData({...formData, [field]: e.target.value})}
                         />
                       </div>
@@ -300,17 +300,17 @@ export default function WorkshopRegistration() {
             {step === 3 && (
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-12">
                 <div>
-                  <span className="text-yellow-500 text-[10px] font-black tracking-[0.4em] uppercase">Curated Packages</span>
-                  <h2 className="text-3xl font-black italic uppercase tracking-tighter mt-2">Exclusive Combos<span className="text-yellow-500">.</span></h2>
+                  <span className="text-[#3b82f6] text-[10px] font-black tracking-[0.4em] uppercase">Curated Packages</span>
+                  <h2 className="text-3xl font-black italic uppercase tracking-tighter mt-2">Exclusive Combos<span className="text-[#3b82f6]">.</span></h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-6">
                     {combos.map(combo => (
                       <motion.div key={combo.id} whileHover={{ y: -5 }} className="p-8 rounded-[2rem] bg-neutral-900 border border-neutral-800 relative overflow-hidden group">
                         <h3 className="text-xl font-black italic uppercase tracking-tighter">{combo.name}</h3>
                         <p className="text-neutral-500 text-xs font-bold uppercase tracking-wider mt-1">{combo.desc}</p>
                         <div className="mt-6 flex items-baseline gap-2">
-                          <span className="text-2xl font-black text-yellow-500">₹{combo.price}</span>
+                          <span className="text-2xl font-black text-[#3b82f6]">₹{combo.price}</span>
                         </div>
-                        <button onClick={() => selectCombo(combo.ids)} className="mt-6 w-full py-3 bg-neutral-800 hover:bg-yellow-500 hover:text-black rounded-xl text-[10px] font-black uppercase tracking-widest transition-all">Apply Combo</button>
+                        <button onClick={() => selectCombo(combo.ids)} className="mt-6 w-full py-3 bg-neutral-800 hover:bg-[#3b82f6] hover:text-black rounded-xl text-[10px] font-black uppercase tracking-widest transition-all">Apply Combo</button>
                       </motion.div>
                     ))}
                   </div>
@@ -318,17 +318,17 @@ export default function WorkshopRegistration() {
 
                 <div>
                   <span className="text-neutral-500 text-[10px] font-black tracking-[0.4em] uppercase">Core Subjects</span>
-                  <h2 className="text-3xl font-black italic uppercase tracking-tighter mt-2">Individual Tracks<span className="text-yellow-500">.</span></h2>
+                  <h2 className="text-3xl font-black italic uppercase tracking-tighter mt-2">Individual Tracks<span className="text-[#3b82f6]">.</span></h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
                     {workshops.map(ws => (
                       <div 
                         key={ws.id} 
                         onClick={() => toggleSelection(ws.id)}
-                        className={`group cursor-pointer p-6 rounded-[1.5rem] bg-neutral-900/50 border-2 transition-all relative ${selectedItems.includes(ws.id) ? 'border-yellow-500 bg-neutral-900' : 'border-neutral-800'}`}
+                        className={`group cursor-pointer p-6 rounded-[1.5rem] bg-neutral-900/50 border-2 transition-all relative ${selectedItems.includes(ws.id) ? 'border-[#3b82f6] bg-neutral-900' : 'border-neutral-800'}`}
                       >
                         <div className="flex justify-between items-start">
-                          <div className={`p-3 rounded-xl ${selectedItems.includes(ws.id) ? 'bg-yellow-500 text-black' : 'bg-neutral-800'}`}>{ws.icon}</div>
-                          {selectedItems.includes(ws.id) && <Check size={20} className="text-yellow-500" />}
+                          <div className={`p-3 rounded-xl ${selectedItems.includes(ws.id) ? 'bg-[#3b82f6] text-black' : 'bg-neutral-800'}`}>{ws.icon}</div>
+                          {selectedItems.includes(ws.id) && <Check size={20} className="text-[#3b82f6]" />}
                         </div>
                         <h3 className="mt-4 font-black italic uppercase text-lg tracking-tighter">{ws.name}</h3>
                         <p className="text-neutral-500 text-xs mt-1 leading-relaxed">{ws.desc}</p>
@@ -346,21 +346,21 @@ export default function WorkshopRegistration() {
             {/* --- STEP 4: SUCCESS SCREEN --- */}
             {step === 4 && (
               <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="mt-20 text-center space-y-10 w-full">
-                <div className="w-24 h-24 bg-yellow-500 text-black rounded-full flex items-center justify-center mx-auto shadow-[0_0_50px_rgba(234,179,8,0.3)]">
+                <div className="w-24 h-24 bg-[#3b82f6] text-black rounded-full flex items-center justify-center mx-auto shadow-[0_0_50px_rgba(234,179,8,0.3)]">
                   <Check size={48} strokeWidth={4} />
                 </div>
                 <div className="space-y-2">
-                  <h1 className="text-6xl font-black uppercase italic tracking-tighter">Registered<span className="text-yellow-500">.</span></h1>
+                  <h1 className="text-6xl font-black uppercase italic tracking-tighter">Registered<span className="text-[#3b82f6]">.</span></h1>
                   <p className="text-neutral-500 font-bold tracking-widest uppercase text-xs">Access sequence initiated</p>
                 </div>
 
                 <div className="max-w-md mx-auto bg-neutral-900 p-8 rounded-[2rem] border border-neutral-800 text-left space-y-6">
                   <div>
-                    <span className="text-[10px] font-black text-yellow-500 tracking-[0.3em] uppercase block mb-4">Enrolled Tracks</span>
+                    <span className="text-[10px] font-black text-[#3b82f6] tracking-[0.3em] uppercase block mb-4">Enrolled Tracks</span>
                     <div className="space-y-3">
                       {JSON.parse(localStorage.getItem(`purchase_${formData.email}`) || '[]').map(name => (
                         <div key={name} className="flex items-center gap-3 text-sm font-bold uppercase italic tracking-tight">
-                          <div className="w-1.5 h-1.5 bg-yellow-500 rounded-full" /> {name}
+                          <div className="w-1.5 h-1.5 bg-[#3b82f6] rounded-full" /> {name}
                         </div>
                       ))}
                     </div>
@@ -370,7 +370,7 @@ export default function WorkshopRegistration() {
                     <span className="text-[10px] font-black text-neutral-500 tracking-[0.3em] uppercase block mb-2">Access Instructions</span>
                     <p className="text-xs text-neutral-400 leading-relaxed font-medium italic">
                       Meeting links and session credentials have been sent to <span className="text-white">{formData.email}</span>. 
-                      Links will also appear <span className="text-yellow-500">right here</span> on the scheduled date of the workshop.
+                      Links will also appear <span className="text-[#3b82f6]">right here</span> on the scheduled date of the workshop.
                     </p>
                   </div>
                 </div>
@@ -391,7 +391,7 @@ export default function WorkshopRegistration() {
               <div className="flex flex-col">
                 <div className="flex items-center gap-2">
                   <span className="text-[10px] font-black text-neutral-500 uppercase tracking-widest">Total Amount</span>
-                  {activeCombo && <span className="bg-yellow-500/10 text-yellow-500 text-[8px] font-black uppercase px-2 py-1 rounded-md border border-yellow-500/20">{activeCombo.name}</span>}
+                  {activeCombo && <span className="bg-[#3b82f6]/10 text-[#3b82f6] text-[8px] font-black uppercase px-2 py-1 rounded-md border border-[#3b82f6]/20">{activeCombo.name}</span>}
                 </div>
                 <p className="text-3xl font-black italic tracking-tighter mt-1">₹{calculateTotal()}</p>
                 
@@ -400,7 +400,7 @@ export default function WorkshopRegistration() {
                     initial={{ opacity: 0, y: 5 }}
                     animate={{ opacity: 1, y: 0 }}
                     onClick={() => setComboApplied(true)}
-                    className="mt-1 flex items-center gap-1.5 text-yellow-500 text-[10px] font-black uppercase tracking-tighter bg-yellow-500/10 px-2 py-1 rounded-lg border border-yellow-500/20 hover:bg-yellow-500/20 transition-all w-fit"
+                    className="mt-1 flex items-center gap-1.5 text-[#3b82f6] text-[10px] font-black uppercase tracking-tighter bg-[#3b82f6]/10 px-2 py-1 rounded-lg border border-[#3b82f6]/20 hover:bg-[#3b82f6]/20 transition-all w-fit"
                   >
                     <Sparkles size={10} /> Apply {qualifyingCombo.name} Price?
                   </motion.button>
@@ -410,7 +410,7 @@ export default function WorkshopRegistration() {
               <button 
                 disabled={selectedItems.length === 0 || isChecking}
                 onClick={handlePayment} 
-                className="bg-yellow-500 text-black px-12 py-5 rounded-3xl font-black uppercase tracking-widest text-sm hover:bg-yellow-400 disabled:bg-neutral-800 transition-all flex items-center gap-2"
+                className="bg-[#3b82f6] text-black px-12 py-5 rounded-3xl font-black uppercase tracking-widest text-sm hover:bg-yellow-400 disabled:bg-neutral-800 transition-all flex items-center gap-2"
               >
                 {isChecking ? <Loader2 className="animate-spin" size={18} /> : "Confirm & Pay"}
               </button>
