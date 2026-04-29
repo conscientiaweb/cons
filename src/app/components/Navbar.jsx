@@ -2,334 +2,190 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { Bodoni_Moda, Inter } from "next/font/google";
 import Link from "next/link";
-import DecryptedText from "../ui/decrypt_text";
 import { motion, AnimatePresence } from "framer-motion";
-import { UserRound } from "lucide-react";
-import Threads from "../ui/threads";
-import TargetCursor from "../ui/target_cursor";
+import { UserRound, Menu, X } from "lucide-react";
 
-/**
- * Main Navigation Component
- * Handles the floating navbar and the full-screen overlay menu.
- */
 const Nav = () => {
-  // --- State & Handlers ---
-  const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-  // Handle scroll effect for navbar resizing
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Prevent background scrolling when menu is active
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
   }, [isMenuOpen]);
+
+  const navLinks = [
+    { label: "ABOUT", path: "/about" },
+    { label: "WORKSHOPS", path: "/online-workshops" },
+    { label: "EVENTS", path: "/events" },
+    { label: "ACCOMMODATION", path: "/accommodation" },
+    { label: "CONTACT US", path: "/contact-us" },
+  ];
+
+  // The "Lando" Easing - Heavy start, smooth finish
+  const expoTransition = { duration: 0.9, ease: [0.85, 0, 0.15, 1] };
 
   return (
     <>
-      <TargetCursor />
-
-      {/* --- Floating Navbar --- */}
-      <nav
-        className={`fixed left-1/2 -translate-x-1/2 transition-all duration-500 w-[95%] max-w-[1024px] rounded-[1.5rem] flex items-center justify-between px-3 md:px-5 z-[60] ${scrolled ? "top-2 md:top-4 h-[65px]" : "top-4 md:top-6 h-[75px]"
-          } ${isMenuOpen
-            ? "opacity-0 pointer-events-none"
-            : "backdrop-blur-xl bg-grey border border-slate-700 border-[1.5px] shadow-[0_20px_50px_rgba(0,0,0,0.5)] opacity-100"
-          }`}>
-        
-        {/* Left Section: Logo */}
-        <div className="flex items-center z-50">
-          <Link href="/" string="magnetic" className="cursor-target pointer-events-auto transition-transform hover:scale-110 duration-200 shrink-0">
-            <Image src="/assets/logo.webp" alt="Logo" width={55} height={55} className="w-[40px] h-[40px] md:w-[60px] md:h-[60px] object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]" />
+      {/* --- Sleek Floating Navbar (Glassmorphism, No Border) --- */}
+      <nav className={`fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-[1400px] z-[100] transition-all duration-700 rounded-3xl flex items-center justify-between px-10 ${
+        scrolled 
+          ? "h-16 bg-black/40 backdrop-blur-2xl shadow-[0_20px_80px_rgba(0,0,0,0.4)]" 
+          : "h-24 bg-transparent"
+      }`}>
+        <motion.div 
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          whileHover={{ scale: 1.1, rotate: -5 }}
+        >
+          <Link href="/" className="block">
+            <Image src="/assets/logo.webp" alt="Logo" width={45} height={45} className="w-10 h-10 object-contain drop-shadow-2xl" />
           </Link>
-        </div>
+        </motion.div>
 
-        {/* Center Section: Branding Text */}
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 whitespace-nowrap pointer-events-none">
-          <Link href="/" className="cursor-target pointer-events-auto relative flex items-center no-underline px-2 py-1">
-            <DecryptedText
-              text="CONSCIENTIA 2k26"
-              animateOn="view"
-              revealDirection="center"
-              sequential={true}
-              loop={true}
-              pauseTime={1000}
-              speed={50}
-              className="font-syncopate text-sm sm:text-lg md:text-xl lg:text-2xl tracking-widest uppercase text-white"
-              encryptedClassName="font-syncopate text-sm sm:text-lg md:text-xl lg:text-2xl tracking-widest uppercase text-cyan/70"
-            />
+        <div className="flex items-center gap-8 relative z-[110]">
+          <Link href="/profile" className="text-white/40 hover:text-cyan-400 transition-all duration-300 hover:scale-110">
+            <UserRound size={22} />
           </Link>
-        </div>
-
-        {/* Right Section: Utility Icons & Menu Toggle */}
-        <div className="flex items-center gap-1 md:gap-2 z-[60]">
           
-          
-          {/* Store */}
-          <Link
-            href="/store"
-            string="magnetic"
-            className="cursor-target relative group overflow-hidden rounded-lg p-1.5 flex items-center justify-center">
-            <span className="absolute inset-0 w-full h-full bg-cyan-400 transform -translate-y-[101%] group-hover:translate-y-0 transition-transform duration-[400ms] ease-out rounded-lg" />
-            <UserRound
-              className="relative z-10 w-6 h-6 md:w-7 md:h-7 text-white group-hover:text-black transition-colors duration-300"
-              strokeWidth={2}
-            />
-          </Link>
-
-          {/* Hamburger Menu Toggle */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            string="magnetic"
-            className="cursor-target relative group overflow-hidden rounded-lg p-1.5 focus:outline-none flex flex-col justify-center items-center w-10 h-10">
-            <span className="absolute inset-0 w-full h-full bg-cyan-400 transform -translate-y-[101%] group-hover:translate-y-0 transition-transform duration-[400ms] ease-out rounded-lg" />
-            {isMenuOpen ? (
-              <>
-                <div className="h-[2.5px] w-6 md:w-7 bg-white group-hover:bg-black transition-colors duration-300 absolute rotate-45 relative z-10" />
-                <div className="h-[2.5px] w-6 md:w-7 bg-white group-hover:bg-black transition-colors duration-300 absolute -rotate-45 relative z-10" />
-              </>
-            ) : (
-              <>
-                <div className="h-[2.5px] w-6 md:w-7 bg-white group-hover:bg-black transition-colors duration-300 mb-1.5 relative z-10" />
-                <div className="h-[2.5px] w-6 md:w-7 bg-white group-hover:bg-black transition-colors duration-300 mb-1.5 relative z-10" />
-                <div className="h-[2.5px] w-6 md:w-7 bg-white group-hover:bg-black transition-colors duration-300 relative z-10" />
-              </>
-            )}
+          <button 
+            onClick={() => setIsMenuOpen(!isMenuOpen)} 
+            className="flex items-center group overflow-hidden"
+          >
+            <div className="flex flex-col items-end mr-3 overflow-hidden">
+                <span className="text-[9px] font-syncopate tracking-[0.4em] text-white/50 group-hover:text-cyan-400 transition-colors duration-300">
+                    {isMenuOpen ? "CLOSE" : "MENU"}
+                </span>
+            </div>
+            <div className="relative w-8 h-8 flex items-center justify-center">
+                {/* Custom Hamburger Animation */}
+                <div className="flex flex-col gap-1.5 items-end">
+                    <motion.span 
+                        animate={{ rotate: isMenuOpen ? 45 : 0, y: isMenuOpen ? 4 : 0, width: isMenuOpen ? 24 : 20 }}
+                        className="h-[2px] bg-white block rounded-full"
+                    />
+                    <motion.span 
+                        animate={{ opacity: isMenuOpen ? 0 : 1, width: 28 }}
+                        className="h-[2px] bg-white block rounded-full"
+                    />
+                    <motion.span 
+                        animate={{ rotate: isMenuOpen ? -45 : 0, y: isMenuOpen ? -4 : 0, width: isMenuOpen ? 24 : 16 }}
+                        className="h-[2px] bg-white block rounded-full"
+                    />
+                </div>
+            </div>
           </button>
         </div>
       </nav>
 
-      {/* --- Full-Screen Overlay Menu --- */}
+      {/* --- Synchronized Split Menu --- */}
       <AnimatePresence>
         {isMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.4, ease: "easeInOut" }}
-            className="fixed inset-0 w-full h-[100dvh] bg-[#050505] z-[90] flex flex-col md:flex-row pointer-events-auto overflow-hidden">
+          <div className="fixed inset-0 z-[90] flex overflow-hidden">
             
-            {/* Background Animation */}
-            <div className="absolute inset-0 w-full h-full z-0 pointer-events-auto rotate-180 scale-150 overflow-hidden">
-              <Threads
-                color={[0.0, 128, 128]}
-                amplitude={3}
-                distance={0}
-                enableMouseInteraction={true}
-              />
-            </div>
-
-            {/* Back Button */}
-            <button
+            {/* Left Side: Sliding Blur Panel */}
+            <motion.div
+              initial={{ x: "-100%", backdropFilter: "blur(0px)" }}
+              animate={{ x: 0, backdropFilter: "blur(24px)" }}
+              exit={{ x: "-100%", backdropFilter: "blur(0px)" }}
+              transition={expoTransition}
               onClick={() => setIsMenuOpen(false)}
-              className="cursor-target absolute top-6 left-6 md:top-10 md:left-10 z-[100] flex items-center gap-2 text-white/60 hover:text-white font-syncopate tracking-[0.3em] text-xs uppercase transition-all duration-300 group cursor-pointer">
-              <span className="text-lg leading-none transition-transform duration-300 group-hover:-translate-x-1">
-                &larr;
-              </span>
-              <span>BACK</span>
-            </button>
-
-            {/* Content Container */}
-            <div className="relative z-10 w-full min-h-full flex flex-col justify-center px-8 md:px-[10vw] pt-24 md:pt-0 pointer-events-none [&>*]:pointer-events-auto">
-              <div className="flex flex-col md:flex-row md:items-end justify-between w-full mt-10 mb-10">
-                
-                {/* Visual Accent: Large Logo */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 }}
-                  className="hidden md:flex w-1/2 justify-start pb-4">
-                  <Image
-                    src="/assets/logo.webp"
-                    alt="Logo"
-                    width={280}
-                    height={280}
-                    className="md:w-[280px] md:h-[280px] object-contain opacity-80 mix-blend-screen"
-                  />
+              className="hidden md:block w-1/2 h-full bg-black/40 border-r border-white/[0.03] cursor-pointer"
+            >
+                <motion.div 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 0.1 }}
+                    transition={{ delay: 0.5 }}
+                    className="h-full w-full flex items-center justify-center pointer-events-none"
+                >
+                    <Image src="/assets/logo.webp" alt="" width={400} height={400} className="grayscale brightness-200" />
                 </motion.div>
+            </motion.div>
 
-                {/* Primary Navigation Links */}
-                <div className="w-full md:w-[70%] flex flex-col items-center md:items-end gap-3 md:gap-4 lg:gap-5">
-                  {[
-                    { label: "ABOUT", path: "/about" },
-                    { label: "WORKSHOPS", path: "/online-workshops" },
-                    { label: "EVENTS", path: "/events" },
-                    { label: "ACCOMMODATION", path: "/accommodation" },
-                    { label: "CONTACT US", path: "/contact-us" },
-                  ].map((item, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ y: 30, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      transition={{
-                        delay: 0.1 + i * 0.05,
-                        duration: 0.5,
-                        ease: "easeOut",
-                      }}
-                      className="w-full flex justify-end">
-                      <Link
-                        href={item.path}
-                        string="magnetic"
-                        onClick={() => setIsMenuOpen(false)}
-                        className="cursor-target relative px-4 md:px-6 py-3 flex justify-end font-syncopate font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl tracking-lg uppercase rounded-xl">
+            {/* Right Side: Content Slide */}
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={expoTransition}
+              className="w-full md:w-1/2 h-full bg-[#030303] flex flex-col justify-center px-10 md:px-24 relative"
+            >
+              {/* Dynamic Glow */}
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.3, duration: 1 }}
+                className="absolute top-1/2 left-3/4 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-cyan-600/5 blur-[120px] rounded-full pointer-events-none" 
+              />
 
-                        {/* Staggered Character Animation on Hover */}
-                        <motion.div
-                          className="relative z-10 flex justify-end"
-                          whileHover="hovered"
-                          initial="initial"
-                        >
-                          {item.label.split("").map((char, index) => (
-                            <div
-                              key={index}
-                              className="relative overflow-hidden h-[1.1em] inline-block"
+              <div className="flex flex-col gap-3 relative z-10">
+                {navLinks.map((item, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 20 }}
+                    transition={{ delay: 0.3 + i * 0.08, ...expoTransition }}
+                  >
+                    <Link
+                      href={item.path}
+                      onClick={() => setIsMenuOpen(false)}
+                      className="group inline-block"
+                    >
+                      {/* Text Transitions: Refined sizing and slower stagger */}
+                      <motion.div 
+                        className="flex font-syncopate font-bold text-3xl md:text-4xl lg:text-5xl tracking-[-0.02em] uppercase overflow-hidden"
+                        whileHover="hovered"
+                        initial="initial"
+                      >
+                        {item.label.split("").map((char, index) => (
+                          <div key={index} className="relative overflow-hidden h-[1.15em] inline-block">
+                            <motion.span
+                              variants={{ initial: { y: 0 }, hovered: { y: "-105%" } }}
+                              transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1], delay: index * 0.025 }}
+                              className="block text-white/90"
                             >
-                              {/* Slide-out State */}
-                              <motion.span
-                                custom={index}
-                                variants={{
-                                  initial: (i) => ({
-                                    y: 0,
-                                    opacity: 1,
-                                    transition: {
-                                      delay: i * 0.03,
-                                      duration: 0.35,
-                                      ease: [0.76, 0, 0.24, 1],
-                                    },
-                                  }),
-                                  hovered: (i) => ({
-                                    y: "-110%",
-                                    opacity: 0,
-                                    transition: {
-                                      delay: i * 0.03,
-                                      duration: 0.35,
-                                      ease: [0.76, 0, 0.24, 1],
-                                    },
-                                  }),
-                                }}
-                                className="absolute inset-0 flex items-center justify-center text-white"
-                              >
-                                {char === " " ? "\u00A0" : char}
-                              </motion.span>
-                              {/* Slide-in State (Cyan/Yellow) */}
-                              <motion.span
-                                custom={index}
-                                variants={{
-                                  initial: (i) => ({
-                                    y: "110%",
-                                    opacity: 0,
-                                    transition: {
-                                      delay: i * 0.03,
-                                      duration: 0.35,
-                                      ease: [0.76, 0, 0.24, 1],
-                                    },
-                                  }),
-                                  hovered: (i) => ({
-                                    y: 0,
-                                    opacity: 1,
-                                    transition: {
-                                      delay: i * 0.03,
-                                      duration: 0.35,
-                                      ease: [0.76, 0, 0.24, 1],
-                                    },
-                                  }),
-                                }}
-                                className="relative flex items-center justify-center text-yellow-500"
-                              >
-                                {char === " " ? "\u00A0" : char}
-                              </motion.span>
-                            </div>
-                          ))}
-                        </motion.div>
-                      </Link>
-                    </motion.div>
-                  ))}
-                </div>
+                              {char === " " ? "\u00A0" : char}
+                            </motion.span>
+                            <motion.span
+                              variants={{ initial: { y: "105%" }, hovered: { y: 0 } }}
+                              transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1], delay: index * 0.025 }}
+                              className="absolute inset-0 block text-cyan-400"
+                            >
+                              {char === " " ? "\u00A0" : char}
+                            </motion.span>
+                          </div>
+                        ))}
+                      </motion.div>
+                    </Link>
+                  </motion.div>
+                ))}
               </div>
 
-              {/* Mobile Decorative Logo */}
-              <motion.div
+              {/* Enhanced Social Footer */}
+              <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-                className="flex md:hidden items-center justify-center w-full mt-12">
-                <Image
-                  src="/assets/logo.webp"
-                  alt="Logo"
-                  width={120}
-                  height={120}
-                  className="w-24 h-24 object-contain opacity-80 mix-blend-screen"
-                />
-              </motion.div>
-
-              {/* Social Media Footer */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
-                className="flex flex-col items-center md:items-end gap-3 md:gap-4 w-full mt-2 md:mt-5">
-                <span className="font-karla uppercase tracking-[0.3em] text-[9px] md:text-[10px] text-white/50 mb-1">
-                  Follow Us
-                </span>
-                <div className="flex items-center justify-center md:justify-end gap-5 md:gap-7 w-full">
-                  <Link
-                    href="#"
-                    className="cursor-target w-9 h-9 md:w-11 md:h-11 flex items-center justify-center hover:scale-110 transition-transform cursor-pointer opacity-90 hover:opacity-100">
-                    <Image
-                      src="/assets/instagram.png"
-                      alt="Instagram"
-                      width={40}
-                      height={40}
-                      className="object-contain rounded-lg"
-                    />
-                  </Link>
-                  <Link
-                    href="#"
-                    className="cursor-target w-9 h-9 md:w-11 md:h-11 flex items-center justify-center hover:scale-110 transition-transform cursor-pointer opacity-90 hover:opacity-100">
-                    <Image
-                      src="/assets/youtube.png"
-                      alt="YouTube"
-                      width={40}
-                      height={40}
-                      className="object-contain"
-                    />
-                  </Link>
-                  <Link
-                    href="#"
-                    className="cursor-target w-9 h-9 md:w-11 md:h-11 flex items-center justify-center hover:scale-110 transition-transform cursor-pointer opacity-90 hover:opacity-100">
-                    <Image
-                      src="/assets/linkedin.png"
-                      alt="LinkedIn"
-                      width={40}
-                      height={40}
-                      className="object-contain"
-                    />
-                  </Link>
-                  <Link
-                    href="#"
-                    className="cursor-target w-9 h-9 md:w-11 md:h-11 flex items-center justify-center hover:scale-110 transition-transform cursor-pointer opacity-90 hover:opacity-100 rounded-full overflow-hidden">
-                    <Image
-                      src="/assets/X.jpg"
-                      alt="X"
-                      width={40}
-                      height={40}
-                      className="object-cover rounded-full"
-                    />
-                  </Link>
+                transition={{ delay: 0.8, ...expoTransition }}
+                className="absolute bottom-16 flex flex-col gap-6"
+              >
+                <div className="flex gap-8 items-center">
+                  {["Instagram", "LinkedIn", "YouTube"].map((social) => (
+                    <Link key={social} href="#" className="text-[10px] font-syncopate uppercase tracking-[0.5em] text-white/20 hover:text-cyan-400 hover:tracking-[0.6em] transition-all duration-500">
+                      {social}
+                    </Link>
+                  ))}
                 </div>
               </motion.div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </>
