@@ -15,10 +15,9 @@ export async function POST(req) {
 
     const body = await req.json();
 
-    // AUTO-DETECT BASE URL
-    const protocol = req.headers['x-forwarded-proto'] || 'http';
-    const host = req.headers['x-forwarded-host'] || req.headers.host;
-    const baseUrl = `${protocol}://${host}`;
+    // AUTO-DETECT BASE URL FROM REQUEST
+    const url = new URL(req.url);
+    const baseUrl = `${url.protocol}//${url.host}`;
 
     const {
       customer_id,
