@@ -46,7 +46,7 @@ const Nav = () => {
           whileHover={{ scale: 1.1, rotate: -5 }}
         >
           <Link href="/" className="block">
-            <Image src="/assets/logo.webp" alt="Logo" width={45} height={45} className="w-10 h-10 object-contain drop-shadow-2xl" />
+            <Image src="/assets/logo.png" alt="Logo" width={45} height={45} className="w-10 h-10 object-contain drop-shadow-2xl" />
           </Link>
         </motion.div>
 
@@ -105,7 +105,7 @@ const Nav = () => {
                     transition={{ delay: 0.5 }}
                     className="h-full w-full flex items-center justify-center pointer-events-none"
                 >
-                    <Image src="/assets/logo.webp" alt="" width={400} height={400} className="grayscale brightness-200" />
+                    <Image src="/assets/logo.png" alt="" width={400} height={400} className="grayscale brightness-200" />
                 </motion.div>
             </motion.div>
 
