@@ -254,7 +254,7 @@ export default function WorkshopRegistration() {
     id: '6',
     name: 'Summer School',
     price: 499,
-    desc: 'Immersive summer learning program with advanced space science and AI courses.',
+    desc: 'A summer school to unravel the tangled links with electronics through the world of quantum.',
     ticketCode: '3062',
   };
 
@@ -1015,7 +1015,7 @@ export default function WorkshopRegistration() {
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-8 md:p-12">
                     <div className="flex-1 relative rounded-2xl overflow-hidden bg-black/40 border border-white/5 h-48 md:h-56">
                       <Image
-                        src="/assets/wsfront.png"
+                        src="/assets/summer.png"
                         alt="Summer School"
                         fill
                         className="object-cover"
