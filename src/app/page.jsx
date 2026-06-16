@@ -132,7 +132,7 @@ export default function Home() {
         'Learn through expert-led sessions and interactive discussions, projects.',
         'Attend insightful guest lectures by researchers and industry professionals.'
       ],
-      brochureUrl: '/documents/summer_brochure.pdf',
+      brochureUrl: '/assets/summer_brochure.pdf',
       registrationUrl: '/online-workshops',
     }
   ];
