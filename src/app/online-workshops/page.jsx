@@ -1013,12 +1013,12 @@ export default function WorkshopRegistration() {
                 <h2 className="text-3xl font-black italic uppercase tracking-tighter mb-6">Summer School<span className="text-[#3b82f6]">.</span></h2>
                 <div className={`relative overflow-hidden rounded-[2.5rem] border-2 transition-all duration-500 ${registeredItems.includes('6') ? 'border-green-500/50 bg-green-500/5 shadow-none' : selectedItems.includes('6') ? 'border-[#3b82f6] bg-[#3b82f6]/5 shadow-[0_0_50px_rgba(59,130,246,0.1)]' : 'border-white/5 bg-neutral-900/40'}`}>
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-8 md:p-12">
-                    <div className="flex-1 relative rounded-2xl overflow-hidden bg-black/40 border border-white/5 h-48 md:h-56">
+                    <div className="flex-1 relative rounded-2xl overflow-hidden bg-black/40 border border-white/5 h-48">
                       <Image
                         src="/assets/summer.png"
                         alt="Summer School"
                         fill
-                        className="object-cover"
+                        className="object-fill"
                       />
                     </div>
                     <div className="flex flex-col justify-center space-y-6">
