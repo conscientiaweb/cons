@@ -124,7 +124,7 @@ export default function Home() {
       title: 'Online Summer School on Quantum Communications and Electronic Systems',
       subtitle: 'QCES 2026',
       duration: '2 sessions every weekend',
-      dates: '4th July 2026',
+      dates: '16th July 2026',
       price: 499,
       desc: 'Learn how quantum innovations are transforming security, communication, and precision systems.',
       highlights: [
