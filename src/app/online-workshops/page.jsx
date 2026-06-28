@@ -1245,8 +1245,8 @@ export default function WorkshopRegistration() {
               <section>
                 <h2 className="text-2xl font-black italic uppercase tracking-tighter mb-8">Bundles<span className="text-[#3b82f6]">.</span></h2>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                  {combos.map(combo => {
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
+                  {[combos[3]].map(combo => {
                     const alreadyOwnsAll = combo.ids.every(id => registeredItems.includes(id));
                     return (
                       <div key={combo.id} className="p-6 rounded-[2rem] bg-neutral-900 border border-white/5 flex flex-col justify-between hover:border-[#3b82f6]/40 transition-colors">
@@ -1264,37 +1264,7 @@ export default function WorkshopRegistration() {
               </section>
 
               {/* INDIVIDUAL */}
-              <section>
-                <h2 className="text-2xl font-black italic uppercase tracking-tighter">Workshops<span className="text-[#3b82f6]">.</span></h2>
-                <p className="text-neutral-400 text-sm leading-relaxed mb-4">(Click on the workshop to expand details below)</p>
-                <h1 className="text-xl uppercase mb-8"></h1>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                  {workshops.map(ws => (
-                    <IndividualWorkshopCard
-                      key={ws.id}
-                      ws={ws}
-                      registeredItems={registeredItems}
-                      selectedItems={selectedItems}
-                      selectedWorkshop={selectedWorkshop}
-                      setSelectedWorkshop={setSelectedWorkshop}
-                      toggleSelection={toggleSelection}
-                    />
-                  ))}
-                </div>
-
-                {/* WORKSHOP DETAILS */}
-                <AnimatePresence>
-                  {selectedWorkshop && (
-                    <ExpandedWorkshopDetails
-                      selectedWorkshop={selectedWorkshop}
-                      setSelectedWorkshop={setSelectedWorkshop}
-                      toggleSelection={toggleSelection}
-                      registeredItems={registeredItems}
-                      selectedItems={selectedItems} 
-                    />
-                  )}
-                </AnimatePresence>
-              </section>
+              
               <div className="min-h-screen text-slate-200 py-20 px-6 font-sans">
                 <div className="max-w-4xl mx-auto">
 
