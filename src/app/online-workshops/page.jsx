@@ -452,7 +452,7 @@ export default function WorkshopRegistration() {
     { id: 'c1', name: 'Space Combo', ids: ['1', '2'], price: 649 },
     { id: 'c2', name: 'AI Combo', ids: ['3', '4'], price: 549 },
     { id: 'c3', name: 'Mega Combo', ids: ['1', '2', '3', '4'], price: 1149 },
-    { id: 'c4', name: 'QCES + MERCH Combo', ids: ['5', '6'], price: 1048 },
+    { id: 'c4', name: 'QCES + MERCH Combo', ids: ['5', '6'], price: 999 },
   ];
 
   // --- VALIDATIONS ---
