@@ -34,12 +34,12 @@ const DEADLINES = {
   '6': '2026-07-15T00:00:00Z', // Summer School
 
   // Space Merch
-  '5': '2026-06-30T14:00:00Z',
+  '5': '2026-07-15T00:00:00Z',
 
   'c1': '2026-06-20T15:30:00Z', // Space Combo
   'c2': '2026-06-19T15:30:00Z', // AI Combo
   'c3': '2026-06-19T15:30:00Z', // Mega Combo
-  'c4': '2026-06-19T15:30:00Z', // Ultimate Combo
+  'c4': '2026-07-15T00:00:00Z', // QCES + MERCH Combo
 };
 
 // React hook to handle automatic dynamic live timer down to the exact second
@@ -452,7 +452,7 @@ export default function WorkshopRegistration() {
     { id: 'c1', name: 'Space Combo', ids: ['1', '2'], price: 649 },
     { id: 'c2', name: 'AI Combo', ids: ['3', '4'], price: 549 },
     { id: 'c3', name: 'Mega Combo', ids: ['1', '2', '3', '4'], price: 1149 },
-    { id: 'c4', name: 'Ultimate Combo', ids: ['1', '2', '3', '4', '5'], price: 1699 },
+    { id: 'c4', name: 'QCES + MERCH Combo', ids: ['5', '6'], price: 1048 },
   ];
 
   // --- VALIDATIONS ---
@@ -755,9 +755,9 @@ export default function WorkshopRegistration() {
 
     try {
       // Mapping of your local IDs to TiQR Ticket IDs
-      // TiQR ticket IDs (same order as dashboard: ultimate → mega → space → merch → AI combo → workshops → summer school)
+      // TiQR ticket IDs (same order as dashboard: QCES+MERCH → mega → space → merch → AI combo → workshops → summer school)
       const TICKET_MAPPING = {
-        'c4': 3050, // Ultimate Combo
+        'c4': 3050, // QCES + MERCH Combo
         'c3': 3049, // Mega Combo
         'c1': 3047, // Space Combo
         '5': 3042, // Space Merch
@@ -1631,7 +1631,7 @@ export default function WorkshopRegistration() {
               <p className="text-4xl font-black italic tracking-tighter">₹{totalAmount}</p>
               {!activeCombo && qualifyingCombo && (
                 <button onClick={() => selectCombo(qualifyingCombo.ids)} className="mt-1 flex items-center gap-1.5 text-[#3b82f6] text-[9px] font-black uppercase tracking-tighter group">
-                  <Sparkles size={10} className="group-hover:rotate-12 transition-transform" /> Optimize for {qualifyingCombo.name}?
+                  <Sparkles size={10} className="group-hover:rotate-12 transition-transform" /> Upgrade to {qualifyingCombo.name}?
                 </button>
               )}
             </div>
