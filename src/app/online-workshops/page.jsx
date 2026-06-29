@@ -530,16 +530,35 @@ export default function WorkshopRegistration() {
 
   }, [selectedItems, registeredItems, activeCombo]);
 
+  const [isSummerComboPopupOpen, setIsSummerComboPopupOpen] = useState(false);
+
   // --- SELECTION HANDLERS ---
   const toggleSelection = (id) => {
 
     if (registeredItems.includes(id)) return;
-    if (id === '5') {
-      const isAlreadySelected = selectedItems.includes('5');
-      if (isAlreadySelected) {
-        setSelectedItems((prev) => prev.filter((itemId) => itemId !== '5'));
+
+    // Summer School
+    if (id === '6') {
+      const alreadySelected = selectedItems.includes('6');
+
+      if (alreadySelected) {
+        setSelectedItems(prev => prev.filter(item => item !== '6'));
         return;
       }
+
+      setIsSummerComboPopupOpen(true);
+      return;
+    }
+
+    // Merch
+    if (id === '5') {
+      const isAlreadySelected = selectedItems.includes('5');
+
+      if (isAlreadySelected) {
+        setSelectedItems(prev => prev.filter(item => item !== '5'));
+        return;
+      }
+
       setMerchDialogError('');
       setIsMerchDialogOpen(true);
       return;
@@ -1264,7 +1283,7 @@ export default function WorkshopRegistration() {
               </section>
 
               {/* INDIVIDUAL */}
-              
+
               <div className="min-h-screen text-slate-200 py-20 px-6 font-sans">
                 <div className="max-w-4xl mx-auto">
 
@@ -1412,7 +1431,57 @@ export default function WorkshopRegistration() {
           )}
         </AnimatePresence>
       </main>
+      <AnimatePresence>
+        {isSummerComboPopupOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[125] flex items-center justify-center p-6"
+          >
+            <motion.div
+              initial={{ scale: 0.95, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.95, y: 20 }}
+              className="w-full max-w-md rounded-3xl bg-[#0f0f10] border border-white/10 p-8"
+            >
+              <h3 className="text-2xl font-black uppercase italic tracking-tighter">
+                Upgrade to Combo?
+              </h3>
 
+              <p className="mt-4 text-neutral-400 leading-relaxed">
+                Get the <span className="text-[#3b82f6] font-bold">QCES + Merch Combo</span> for
+                <span className="text-white font-bold"> ₹999 </span>
+                instead of purchasing only the Summer School.
+              </p>
+
+              <div className="mt-8 flex gap-3">
+                <button
+                  onClick={() => {
+                    setSelectedItems(prev =>
+                      prev.includes('6') ? prev : [...prev, '6']
+                    );
+                    setIsSummerComboPopupOpen(false);
+                  }}
+                  className="flex-1 py-3 rounded-xl border border-white/20 text-white font-black uppercase tracking-widest text-xs hover:bg-white hover:text-black transition"
+                >
+                  No Thanks
+                </button>
+
+                <button
+                  onClick={() => {
+                    setIsSummerComboPopupOpen(false);
+                    selectCombo(['5', '6']);
+                  }}
+                  className="flex-1 py-3 rounded-xl bg-[#3b82f6] text-black font-black uppercase tracking-widest text-xs hover:bg-white transition"
+                >
+                  Upgrade
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
       <AnimatePresence>
         {isMerchDialogOpen && (
           <motion.div
