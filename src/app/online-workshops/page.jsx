@@ -31,7 +31,7 @@ const DEADLINES = {
   '2': '2026-06-27T15:30:00Z', // Launch Vehicle
   '3': '2026-06-19T15:30:00Z', // Agentic AI
   '4': '2026-06-26T15:30:00Z', // Python ML
-  '6': '2026-07-15T00:00:00Z', // Summer School
+  '6': '2026-06-26T15:30:00Z', // Summer School
 
   // Space Merch
   '5': '2026-07-15T00:00:00Z',
@@ -39,7 +39,7 @@ const DEADLINES = {
   'c1': '2026-06-20T15:30:00Z', // Space Combo
   'c2': '2026-06-19T15:30:00Z', // AI Combo
   'c3': '2026-06-19T15:30:00Z', // Mega Combo
-  'c4': '2026-07-15T00:00:00Z', // QCES + MERCH Combo
+  'c4': '2026-06-26T15:30:00Z', // QCES + MERCH Combo
 };
 
 // React hook to handle automatic dynamic live timer down to the exact second
