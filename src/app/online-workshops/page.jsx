@@ -1159,7 +1159,7 @@ export default function WorkshopRegistration() {
                       <div className="flex items-center gap-3">
                         <div className="text-3xl font-black bg-gradient-to-r from-[#ec4899] to-[#f97316] bg-clip-text text-transparent">₹{merchItem.price}</div>
                         <button
-                          onClick={() => toggleSelection('5')}
+                          onClick={() => {alert("Tegistrations Closed");}}
                           disabled={registeredItems.includes('5')}
                           className={`flex-1 py-4 rounded-2xl font-black uppercase tracking-widest text-xs transition-all flex items-center justify-center gap-3 ${registeredItems.includes('5') ? 'bg-green-500/20 text-green-500' : selectedItems.includes('5') ? 'bg-gradient-to-r from-[#ec4899] to-[#f97316] text-black' : 'bg-gradient-to-r from-[#ec4899] to-[#f97316] text-white hover:shadow-[0_0_20px_rgba(236,72,153,0.5)]'}`}
                         >
@@ -1238,7 +1238,7 @@ export default function WorkshopRegistration() {
                       <div className="flex items-center gap-3">
                         <div className="text-3xl font-black text-[#3b82f6]">₹{summerSchoolItem.price}</div>
                         <button
-                          onClick={() => toggleSelection('6')}
+                          onClick={() => {alert("Tegistrations Closed");}}
                           disabled={registeredItems.includes('6')}
                           className={`flex-1 py-4 rounded-2xl font-black uppercase tracking-widest text-xs transition-all flex items-center justify-center gap-3 ${registeredItems.includes('6') ? 'bg-green-500/20 text-green-500' : selectedItems.includes('6') ? 'bg-[#3b82f6] text-black' : 'bg-white text-black hover:bg-[#3b82f6]'}`}
                         >
