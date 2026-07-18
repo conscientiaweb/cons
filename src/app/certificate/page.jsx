@@ -27,8 +27,8 @@ export default function PhoneCertificateGenerator() {
 
   // Map workshop names to certificate image files (place these images in /public)
   const workshopImages = {
-    'cubesat': '/1.png',
-    'ai': '/2.png',
+    'ai': '/1.png',
+    'cubesat': '/2.png',
     'python': '/3.png',
     'lv': '/4.png'
   }
