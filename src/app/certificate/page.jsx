@@ -13,23 +13,24 @@ export default function PhoneCertificateGenerator() {
   const participants = {
     '9491978534': {
       name: 'Kurmananda Pavan Sai Buragana',
-      workshops: ['Cube sat', 'agentic AI', 'Python ML']
+      workshops: ['ai', 'cubesat','python', 'lv']
     },
     '8888888888': {
       name: 'Bob Smith',
-      workshops: ['Cube sat', 'Python ML']
+      workshops: ['ai', 'cubesat', ]
     },
     '7777777777': {
       name: 'Chitra Rao',
-      workshops: ['Cube sat', 'agentic AI', 'Python ML']
+      workshops: ['python', 'lv']
     }
   }
 
   // Map workshop names to certificate image files (place these images in /public)
   const workshopImages = {
-    'Cube sat': '/1.png',
-    'agentic AI': '/2.png',
-    'Python ML': '/3.png'
+    'cubesat': '/1.png',
+    'ai': '/2.png',
+    'python': '/3.png',
+    'lv': '/4.png'
   }
 
   // Background image provided by user
