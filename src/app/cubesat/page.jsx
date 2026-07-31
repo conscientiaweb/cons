@@ -87,7 +87,7 @@ export default function SingleCertificateGenerator() {
       const centerY = canvas.height * 0.564
 
       // Layout styling elements matching original UI context
-      ctx.font = `700 148px sans-serif`
+      ctx.font = `700 158px sans-serif`
       ctx.fillStyle = '#0b2447'
       ctx.textAlign = 'center'
       ctx.textBaseline = 'middle'
